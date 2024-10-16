@@ -1,9 +1,12 @@
 local player = game.Players.LocalPlayer
-local goldName = "Gold"
-local amountToAdd = 1000000
+local cashName = "Cash" -- เปลี่ยนชื่อนี้ให้ตรงกับชื่อเงินในเกมของคุณ
+local amountToAdd = 1000000 -- จำนวนเงินที่ต้องการเสก
 
-local tool = Instance.new("Tool", player.Backpack)
-tool.Name = goldName
-local value = Instance.new("IntValue", tool)
-value.Name = "Value"
-value.Value = amountToAdd
+-- ตรวจสอบว่ามี leaderstats และ Cash ในตัวผู้เล่น
+local leaderstats = player:WaitForChild("leaderstats")
+local cash = leaderstats:FindFirstChild(cashName)
+if cash then
+    cash.Value = cash.Value + amountToAdd -- เพิ่มเงินเข้า leaderstats
+else
+    print("ไม่พบ Cash ใน leaderstats ของผู้เล่น")
+end
